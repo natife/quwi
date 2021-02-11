@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_global"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.natife.testapp.ui.start.StartFragment" />
+
+    <navigation
+        android:id="@+id/nav_authorization"
+        app:startDestination="@id/loginFragment">
+
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.natife.testapp.ui.login.LoginFragment"
+            android:label="@string/title_login"
+            tools:layout="@layout/fragment_login" />
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/nav_main"
+        app:startDestination="@id/mainFragment">
+
+        <fragment
+            android:id="@+id/mainFragment"
+            android:name="com.natife.testapp.ui.main.MainFragment"
+            android:label="@string/title_main"
+            tools:layout="@layout/fragment_main" />
+
+        <fragment
+            android:id="@+id/detailsFragment"
+            android:name="com.natife.testapp.ui.details.DetailsFragment"
+            android:label="@string/title_details"
+            tools:layout="@layout/fragment_details">
+
+            <argument
+                android:name="id"
+                app:argType="integer" />
+
+        </fragment>
+
+        <action
+            android:id="@+id/action_details"
+            app:destination="@id/detailsFragment"
+            app:launchSingleTop="true" />
+
+        <action
+            android:id="@+id/action_edit_name"
+            app:destination="@id/editNameDialog"
+            app:launchSingleTop="true" />
+
+        <dialog
+            android:id="@+id/editNameDialog"
+            android:name="com.natife.testapp.ui.EditNameDialog"
+            android:label="EditNameDialog">
+
+            <argument
+                android:name="name"
+                app:argType="string" />
+        </dialog>
+
+    </navigation>
+
+    <action
+        android:id="@+id/action_global_nav_main"
+        app:destination="@id/nav_main"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_global" />
+
+    <action
+        android:id="@+id/action_global_nav_auth"
+        app:destination="@id/nav_authorization"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_global" />
+
+</navigation>
